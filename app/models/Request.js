@@ -2,11 +2,22 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const RequestSchema = new Schema({
+  userId: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: true,
+  },
   title: {
     type: String,
     required: true,
   },
-  imageURL: {
+  description: {
+    type: String,
+    required: true,
+    minlength: [20, 'Description must be more than 20 characters'],
+    maxlength: [255, 'Description can not be more than 255 characters'],
+  },
+  photorUrl: {
     type: String,
     required: true,
   },
@@ -25,17 +36,6 @@ const RequestSchema = new Schema({
   isActive: {
     type: Boolean,
     default: true,
-  },
-  description: {
-    type: String,
-    required: true,
-    minlength: [20, 'Description must be more than 20 characters'],
-    maxlength: [255, 'Description can not be more than 255 characters'],
-  },
-  user: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User',
-    required: true,
   },
   createdAt: {
     type: Date,
