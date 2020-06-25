@@ -4,36 +4,42 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   firstName: {
     type: String,
-    required: true,
+    required: [true, 'Please add your first name'],
   },
   lastName: {
     type: String,
-    required: true,
+    required: [true, 'Please add your first name'],
   },
   email: {
     type: String,
-    required: true,
+    required: [true, 'Please add an email'],
+    unique: true,
+    match: [
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      'Please add a valid email',
+    ],
   },
   phone: {
     type: String,
-    required: true,
+    maxlength: [20, 'Phone number can not be longer than 20 characters'],
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'Please add a passord'],
+    minlength: 6,
+    select: false, // what this will do is when we get a user through our API it's not going to show the password
   },
   address: {
-    type: text,
-    required: true,
-  },
-  verified: {
-    type: Number,
-    required: true,
+    type: String,
+    required: [true, 'Please add an address'],
   },
   role: {
-    type: String,
-    required: true,
+    type: [String],
+    enum: ['user', 'investor'],
+    default: 'user',
   },
+  resetPasswordToken: String,
+  resetPasswordExpire: String,
   createdAt: {
     type: Date,
     default: Date.now,

@@ -9,17 +9,19 @@ const RequestSchema = new Schema({
   },
   title: {
     type: String,
-    required: true,
+    required: [true, 'Please add a title'],
+    maxlength: [50, 'title can not be more than 50 characters']
   },
   description: {
-    type: String,
+    type: text,
     required: true,
-    minlength: [20, 'Description must be more than 20 characters'],
+    minlength: [50, 'Description must be more than 50 characters'],
     maxlength: [255, 'Description can not be more than 255 characters'],
   },
-  photorUrl: {
+  photoUrl: {
     type: String,
-    required: true,
+    default: 'https://res.cloudinary.com/major-stark/image/upload/v1581430383/samples/animals/three-dogs.jpg',
+    required: [true, 'Please add a photo'],
   },
   amount: {
     type: Number,

@@ -7,8 +7,9 @@ const FavouriteSchema = new Schema({
     ref: 'User',
     required: true,
   },
-  statement: {
-    type: String,
+  requestId: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Request',
     required: true,
   },
   createdAt: {

@@ -1,14 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const RecommendationSchema = new Schema({
-  userId: {
+const AccrualSchema = new Schema({
+  requestId: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User',
+    ref: 'Request',
     required: true,
   },
-  statement: {
-    type: String,
+  rate: {
+    type: Number,
+    required: true,
+  },
+  amount: {
+    type: Number,
     required: true,
   },
   createdAt: {
@@ -17,4 +21,4 @@ const RecommendationSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('Recommendation', RecommendationSchema);
+module.exports = mongoose.model('Accrual', AccrualSchema);

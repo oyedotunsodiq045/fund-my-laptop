@@ -9,15 +9,18 @@ const VerificationSchema = new Schema({
   },
   photoUrl: {
     type: String,
-    required: true,
+    default: 'https://res.cloudinary.com/major-stark/image/upload/v1581430383/samples/animals/three-dogs.jpg',
+    required: [true, 'Please add a photo'],
   },
   videoUrl: {
     type: String,
-    required: true,
+    default: 'https://res.cloudinary.com/major-stark/video/upload/v1581430394/samples/elephants.mp4',
+    required: [true, 'Please add a video'],
   },
   status: {
     type: Boolean,
     required: true,
+    default: false,
   },
   createdAt: {
     type: Date,
