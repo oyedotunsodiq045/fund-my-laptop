@@ -41,4 +41,3 @@ class AccrualService {
 }
 
 module.exports = new AccrualService();
-
